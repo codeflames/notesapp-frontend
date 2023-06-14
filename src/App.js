@@ -47,12 +47,12 @@ const App = () => {
       setUsername('')
       setPassword('')
     } catch (error) {
-      console.log(error);
+      console.log(error)
       setErrorMessage('Wrong credentials')
       setTimeout(() => {
         setErrorMessage(null)
       }
-        , 5000)
+      , 5000)
     }
   }
 
@@ -75,7 +75,7 @@ const App = () => {
 
 
   const addNote = (noteObject) => {
-  
+
     noteService.create(noteObject)
       .then(returnedNote => {
         setNotes(notes.concat(returnedNote))
@@ -96,7 +96,8 @@ const App = () => {
         setNotes(notes.map(note => note.id !== id ? note : returnedNote))
       }
     ).catch(
-      error => {
+      (error) => {
+        console.log(error)
         setErrorMessage(
           `Note '${note.content}' was already removed from server`
         )
@@ -110,7 +111,7 @@ const App = () => {
 
 
 
- 
+
   const logoutButton = () => {
     return (
       <button onClick={logout}>logout</button>
@@ -125,8 +126,8 @@ const App = () => {
       <h1>Notes</h1>
       <Notification message={errorMessage} />
 
-      {!user && 
-      <Togglable buttonLabel='Log in'>
+      {!user &&
+        <Togglable buttonLabel='Log in'>
           <LoginForm
             username={username}
             password={password}
@@ -134,7 +135,7 @@ const App = () => {
             setUsername={setUsername}
             handleLogin={handleLogin}
           />
-      </Togglable>
+        </Togglable>
       }
       {user && <div>
         <p>{user.name} logged-in  </p>

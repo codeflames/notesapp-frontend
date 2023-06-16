@@ -26,9 +26,7 @@ const App = () => {
     console.log('effect')
     noteService.getAll()
       .then(initialNotes => {
-        setNotes(initialNotes.concat(
-          { id: 10000, content: 'This note is not saved to server', important: true }
-        ))
+        setNotes(initialNotes)
       })
   }
 
